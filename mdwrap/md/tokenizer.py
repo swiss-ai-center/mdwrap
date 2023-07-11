@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 from typing import List
 
-from mdwrap.classes.regex_builder import RegexBuilder
+from mdwrap.utils.regex_builder import RegexBuilder
 
 
 @dataclass
-class MDTokenizer:
+class Tokenizer:
     """Class for tokenizing markdown text into a list of tokens."""
 
     TOKENS_REGEX = RegexBuilder.compile(

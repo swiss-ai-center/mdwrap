@@ -1,6 +1,6 @@
-from mdwrap.classes.md_tokenizer import MDTokenizer
+from mdwrap.md.tokenizer import Tokenizer
 
-tokenizer = MDTokenizer()
+tokenizer = Tokenizer()
 
 IMAGE_TEMPLATES = ["![{}]()", "![]({})"]
 LINK_TEMPLATES = ["[{}]()", "[]({})"]
