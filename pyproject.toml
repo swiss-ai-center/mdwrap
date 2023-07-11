@@ -8,7 +8,7 @@ readme = "README.md"
 packages = [{include = "mdwrap"}]
 
 [tool.poetry.scripts]
-mdwrap = "cli:cli"
+mdwrap = "mdwrap.cli:cli"
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -16,6 +16,9 @@ python = "^3.11"
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"
 flake8 = "^6.0.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.0"
 
 [build-system]
 requires = ["poetry-core"]
