@@ -91,13 +91,13 @@ poetry run black --check .
 
 This project is built with the following tools:
 
-- [pre-commit](https://pre-commit.com/)
-- [poetry](https://python-poetry.org/)
-- [pytest](https://docs.pytest.org/)
-- [flake8](https://flake8.pycqa.org/en/latest/)
-- [black](https://black.readthedocs.io/en/stable/)
+- [`pre-commit`](https://pre-commit.com/)
+- [`poetry`](https://python-poetry.org/)
+- [`pytest`](https://docs.pytest.org/)
+- [`flake8`](https://flake8.pycqa.org/en/latest/)
+- [`black`](https://black.readthedocs.io/en/stable/)
 
 It is also inspired by the following projects:
 
-- [black](https://black.readthedocs.io/en/stable/)
-- [prettier](https://prettier.io/)
+- [`black`](https://black.readthedocs.io/en/stable/)
+- [`prettier`](https://prettier.io/)
