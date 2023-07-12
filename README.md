@@ -23,6 +23,8 @@
   - [With Poetry](#with-poetry)
 - [Usage](#usage)
   - [Arguments](#arguments)
+- [Limitations](#limitations)
+- [Alternatives](#alternatives)
 - [Contributing](#contributing)
   - [Development](#development)
   - [Testing](#testing)
@@ -32,13 +34,18 @@
 
 ## Overview
 
-MDWrap is a Python package that wraps text in Markdown files to a specified
-width. Its is compatible with
+`mdwrap` is a Python package that wraps text in Markdown files to a specified
+width. It also implements basic newline formatting and trailing whitespace
+removal. This package was built for compatibility with
 [Material for MKDocs](https://squidfunk.github.io/mkdocs-material/).
+
+The motivation for this project was to have a lightweight package with no
+external dependencies that works well with Material for MkDocs for wrapping and
+basic formatting of Markdown files.
 
 ## Pre-commit Hook
 
-You can use MDWrap as a pre-commit hook to automatically wrap your Markdown
+You can use `mdwrap` as a pre-commit hook to automatically wrap your Markdown
 files. To do so, add the following to your `.pre-commit-config.yaml`:
 
 ```yaml
@@ -79,6 +86,19 @@ mdwrap [options] <file or directory>
 | `--fmt`         | Format the file(s) (basic newline formatting) | `false` |
 | `--unwrap`      | Unwrap the file(s)                            | `false` |
 | `--check`       | Check if the file(s) is/are formatted         | `false` |
+
+## Limitations
+
+One limitation of `mdwrap` is that it does not yet support wrapping quote
+blocks.
+
+## Alternatives
+
+- [`mdformat`](https://mdformat.readthedocs.io) is a Python package that formats
+  Markdown files. It is more feature-rich than `mdwrap` however it does not
+  support Material for MkDocs admonitions entirely.
+- [`prettier`](https://prettier.io) is a powerful code formatter that supports
+  Markdown. It's only downside is that it needs a node environment to run.
 
 ## Contributing
 
