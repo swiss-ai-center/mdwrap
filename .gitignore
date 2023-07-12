@@ -1,6 +1,9 @@
 # Python
 __pycache__
+
+# Tests
 .pytest_cache
+tests/integration/**/output.*
 
 # OS Specific
 .DS_Store
