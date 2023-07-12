@@ -44,7 +44,7 @@ files. To do so, add the following to your `.pre-commit-config.yaml`:
 ```yaml
 repos:
   - repo: https://github.com/csia-pme/mdwrap
-      rev: 0.1.0
+      rev: 0.1.1
       hooks:
         - id: mdwrap
           args: [--print-width, "80", --fmt]
@@ -55,13 +55,13 @@ repos:
 ### With pip
 
 ```bash
-pip install git+https://github.com/csia-pme/mdwrap.git@0.1.0
+pip install git+https://github.com/csia-pme/mdwrap.git@0.1.1
 ```
 
 ### With Poetry
 
 ```bash
-poetry add git+https://github.com/csia-pme/mdwrap.git@0.1.0
+poetry add git+https://github.com/csia-pme/mdwrap.git@0.1.1
 ```
 
 ## Usage
