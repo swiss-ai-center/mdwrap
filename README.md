@@ -17,13 +17,17 @@
 <h2>Table of Contents</h2>
 
 - [Overview](#overview)
+- [Pre-commit Hook](#pre-commit-hook)
 - [Installation](#installation)
+  - [With pip](#with-pip)
+  - [With poetry](#with-poetry)
 - [Usage](#usage)
   - [Arguments](#arguments)
 - [Contributing](#contributing)
   - [Development](#development)
   - [Testing](#testing)
   - [Linting](#linting)
+  - [Releasing](#releasing)
 - [References](#references)
 
 ## Overview
@@ -32,10 +36,33 @@ MDWrap is a Python package that wraps text in Markdown files to a specified
 width. Its is compatible with
 [Material for MKDocs](https://squidfunk.github.io/mkdocs-material/).
 
+## Pre-commit Hook
+
+You can use MDWrap as a pre-commit hook to automatically wrap your Markdown
+files. To do so, add the following to your `.pre-commit-config.yaml`:
+
+```yaml
+repos:
+  - repo: https://github.com/csia-pme/mdwrap
+      rev: 0.1.0
+      hooks:
+        - id: mdwrap
+          args: [--print-width, 80, --fmt]
+```
+
+
 ## Installation
 
+### With pip
+
 ```bash
-pip install git+https://https://github.com/leonardcser/mdwrap.git
+pip install git+https://github.com/csia-pme/mdwrap.git@0.1.0
+```
+
+### With poetry
+
+```bash
+poetry add git+https://github.com/csia-pme/mdwrap.git@0.1.0
 ```
 
 ## Usage
@@ -85,6 +112,18 @@ To lint the code:
 ```bash
 poetry run flake8
 poetry run black --check .
+```
+
+### Releasing
+
+First, make sure to update the version in this file.
+
+Next, to release a new version:
+
+```bash
+poetry version <version>
+git tag <version> main
+git push origin <version>
 ```
 
 ## References
