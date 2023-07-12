@@ -20,7 +20,7 @@
 - [Pre-commit Hook](#pre-commit-hook)
 - [Installation](#installation)
   - [With pip](#with-pip)
-  - [With poetry](#with-poetry)
+  - [With Poetry](#with-poetry)
 - [Usage](#usage)
   - [Arguments](#arguments)
 - [Contributing](#contributing)
@@ -58,7 +58,7 @@ repos:
 pip install git+https://github.com/csia-pme/mdwrap.git@0.1.0
 ```
 
-### With poetry
+### With Poetry
 
 ```bash
 poetry add git+https://github.com/csia-pme/mdwrap.git@0.1.0
@@ -115,9 +115,9 @@ poetry run black --check .
 
 ### Releasing
 
-Make sure to first update the versions in this file.
-
-Next, to release a new version, run the following:
+1. Make sure to first update the versions in this file.
+2. Update the [CHANGELOG](/CHANGELOG)
+3. Next, to release a new version, run the following:
 
 ```bash
 # Bump the version in pyproject.toml
