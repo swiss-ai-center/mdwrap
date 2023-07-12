@@ -5,9 +5,12 @@ from typing import List
 from mdwrap.common.abstract.abstract_transform import AbstractTransform
 from mdwrap.common.formatter import Formatter
 from mdwrap.md.line_context import LineContext
-from mdwrap.md.newline_transform import NewlineTransform
-from mdwrap.md.unwrap_transform import UnwrapTransform
-from mdwrap.md.wrap_transform import WrapTransform
+from mdwrap.md.transforms.newline_transform import NewlineTransform
+from mdwrap.md.transforms.trailing_whitespace_transform import (
+    TrailingWhitespaceTransform,
+)
+from mdwrap.md.transforms.unwrap_transform import UnwrapTransform
+from mdwrap.md.transforms.wrap_transform import WrapTransform
 
 
 def cli() -> None:
@@ -48,7 +51,7 @@ def cli() -> None:
     if not unwrap:
         transforms.append(WrapTransform(print_width=print_width))
     if fmt:
-        transforms.append(NewlineTransform())
+        transforms.extend([NewlineTransform(), TrailingWhitespaceTransform()])
 
     files = [target] if target.is_file() else list(target.glob("**/*.md"))
     line_context = LineContext()
