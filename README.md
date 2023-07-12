@@ -115,13 +115,16 @@ poetry run black --check .
 
 ### Releasing
 
-First, make sure to update the version in this file.
+Make sure to first update the versions in this file.
 
-Next, to release a new version:
+Next, to release a new version, run the following:
 
 ```bash
+# Bump the version in pyproject.toml
 poetry version <version>
+# Create a new tag
 git tag <version> main
+# Push the tag
 git push origin <version>
 ```
 
