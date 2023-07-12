@@ -1,0 +1,34 @@
+# Lint and test python code
+
+name: Lint and Test
+
+on:
+  push:
+  pull_request:
+
+  workflow_dispatch:
+
+jobs:
+  lint-and-test:
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.10, 3.11]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install poetry
+        run: pipx install poetry
+      - uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'poetry'
+      - name: Install dependencies
+        run: poetry install
+      - name: Lint with flake8
+        run: poetry run flake8
+      - name: Lint with black
+        run: poetry run black --check .
+      - name: Lint with isort
+        run: poetry run isort --check .
+      - name: Test with pytest
+        run: poetry run pytest
