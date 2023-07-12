@@ -1,0 +1,17 @@
+`This is a very long line for testing and it should not be wrapped instead considered as one token.`
+`*This is a very long line for testing and it should not be wrapped instead considered as one token.*`
+`**This is a very long line for testing and it should not be wrapped instead considered as one token.**`
+`_This is a very long line for testing and it should not be wrapped instead considered as one token._`
+`__This is a very long line for testing and it should not be wrapped instead considered as one token.__`
+`*__This is a very long line for testing and it should not be wrapped instead considered as one token.__*`
+`__*This is a very long line for testing and it should not be wrapped instead considered as one token.*__`
+`**_This is a very long line for testing and it should not be wrapped instead considered as one token._**`
+`_**This is a very long line for testing and it should not be wrapped instead considered as one token.**_`
+*This is a very long line for testing and it should not be wrapped instead considered as one token.*
+**This is a very long line for testing and it should not be wrapped instead considered as one token.**
+_This is a very long line for testing and it should not be wrapped instead considered as one token._
+__This is a very long line for testing and it should not be wrapped instead considered as one token.__
+*__This is a very long line for testing and it should not be wrapped instead considered as one token.__*
+__*This is a very long line for testing and it should not be wrapped instead considered as one token.*__
+**_This is a very long line for testing and it should not be wrapped instead considered as one token._**
+_**This is a very long line for testing and it should not be wrapped instead considered as one token.**_
