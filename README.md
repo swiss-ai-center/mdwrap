@@ -9,7 +9,7 @@
         alt="pre-commit">
     </a> <a href=".github/workflows/lint-and-test.yml">
         <img
-        src="https://github.com/leonardcser/mdwrap/.github/workflows/lint-and-test.yml/badge.svg"
+        src="https://github.com/leonardcser/mdwrap/actions/workflows/lint-and-test.yml/badge.svg"
         alt="lint-and-test">
     </a>
 </div>
