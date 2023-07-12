@@ -7,7 +7,10 @@ from mdwrap.md.tokenizer import Tokenizer
 tokenizer = Tokenizer()
 
 IMAGE_TEMPLATES = ["![{}]()", "![]({})"]
+STYLED_IMAGE_TEMPLATES = ["![{}](){{}}", "![]({}){{}}", "![](){{{}}}"]
 LINK_TEMPLATES = ["[{}]()", "[]({})"]
+
+URL_TEMPLATES = IMAGE_TEMPLATES + STYLED_IMAGE_TEMPLATES + LINK_TEMPLATES
 
 CODE_TEMPLATES = ["`{}`"]
 CODE_BOLD_TEMPLATES = ["`**{}**`", "`__{}__`"]
@@ -31,13 +34,13 @@ STYLE_TEMPLATES = (
     + ITALIC_BOLD_TEMPLATES
 )
 
-TEMPLATES = IMAGE_TEMPLATES + LINK_TEMPLATES + STYLE_TEMPLATES
+TEMPLATES = URL_TEMPLATES + STYLE_TEMPLATES
 
 PUNCTUATION = [".", ",", "!", "?", ":", ";", "-", "(", ")", "[", "]", "{", "}", "..."]
 
 
 def _get_test_image_and_link():
-    for template in IMAGE_TEMPLATES + LINK_TEMPLATES:
+    for template in URL_TEMPLATES:
         yield template.format("Hello world")
 
 
@@ -49,7 +52,7 @@ def test_image_and_link(test_input) -> None:
 
 
 def _get_test_image_and_link_punctuation():
-    for template in IMAGE_TEMPLATES + LINK_TEMPLATES:
+    for template in URL_TEMPLATES:
         for punctuation in PUNCTUATION:
             yield (
                 "Hello " + punctuation + template.format("world") + punctuation,
@@ -68,8 +71,8 @@ def test_image_and_link_punctuation(test_input: str, expected: List[str]) -> Non
 
 
 def _get_test_image_and_link_multiple():
-    for template1 in IMAGE_TEMPLATES + LINK_TEMPLATES:
-        for template2 in IMAGE_TEMPLATES + LINK_TEMPLATES:
+    for template1 in URL_TEMPLATES:
+        for template2 in URL_TEMPLATES:
             yield template1.format("Hello") + " " + template2.format("world")
 
 
@@ -142,7 +145,7 @@ def test_style_muliple(test_input: str) -> None:
 
 
 def _get_test_style_within_image_or_link():
-    for template in IMAGE_TEMPLATES + LINK_TEMPLATES:
+    for template in URL_TEMPLATES:
         for style_template in STYLE_TEMPLATES:
             yield template.format(style_template.format("Hello"))
 
@@ -184,7 +187,7 @@ def test_lists(test_input: str, expected: List[str]) -> None:
 
 
 def _get_test_lists_in_templates():
-    for template in IMAGE_TEMPLATES + LINK_TEMPLATES + STYLE_TEMPLATES:
+    for template in URL_TEMPLATES + STYLE_TEMPLATES:
         for list_type in ["-", "1.", "10.", "- [ ]", "- [x]"]:
             yield template.format(list_type + " Hello" + list_type + " world")
 
