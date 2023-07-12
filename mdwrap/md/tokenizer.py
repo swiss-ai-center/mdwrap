@@ -1,23 +1,23 @@
-from dataclasses import dataclass
 from typing import List
 
+from mdwrap.md.regex import Regex
 from mdwrap.utils.regex_builder import RegexBuilder
 
 
-@dataclass
 class Tokenizer:
     """Class for tokenizing markdown text into a list of tokens."""
 
     TOKENS_REGEX = RegexBuilder.compile(
         [
-            r"(?:[^\s]+)?!?\[.*?\]\(.*?\)(?:[^\s]+)?",  # images
-            r"(?:[^\s]+)?\[.*?\]\(.*?\)(?:[^\s]+)?",  # markdown links
-            r"(?:[^\s\*]+)?\*\*.*?\*\*+(?:[^\s\*]+)?",  # bold
-            r"(?:[^\s_]+)?__.*?__+(?:[^\s_]+)?",  # bold
-            r"(?:[^\s`]+)?`.*?`(?:[^\s`]+)?",  # code
-            r"(?:[^\s\*]+)?\*.*?\*(?:[^\s\*]+)?",  # italic
-            r"(?:[^\s_]+)?_.*?_(?:[^\s_]+)?",  # italic
-            r"[^\s]+",  # text
+            Regex.LIST_START.value,
+            Regex.IMAGE.value,
+            Regex.LINK.value,
+            Regex.INLINE_CODE.value,
+            Regex.BOLD_TEXT1.value,
+            Regex.BOLD_TEXT2.value,
+            Regex.ITALIC_TEXT1.value,
+            Regex.ITALIC_TEXT2.value,
+            Regex.WORD.value,
         ]
     )
 
@@ -25,5 +25,5 @@ class Tokenizer:
         """Tokenize markdown text into a list of tokens."""
         tokens = []
         for match in self.TOKENS_REGEX.finditer(text):
-            tokens.append(match.group(0))
+            tokens.append(match.group(0).strip())
         return tokens
