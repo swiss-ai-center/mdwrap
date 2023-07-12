@@ -1,0 +1,34 @@
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+name: Create Release
+
+jobs:
+  build-and-release:
+    permissions: write-all
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Install poetry
+        run: pipx install poetry
+      - uses: actions/setup-python@v3
+        with:
+          python-version: "3.11"
+          cache: 'poetry'
+      - name: Build the package
+        run: poetry build
+      - name: Check Version
+        id: check-version
+        run: |
+          [[ "$(poetry version --short)" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || echo prerelease=true >> $GITHUB_OUTPUT
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "dist/*"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: false
+          prerelease: ${{ steps.check-version.outputs.prerelease == 'true' }}
