@@ -25,6 +25,8 @@ jobs:
           cache: 'poetry'
       - name: Install dependencies
         run: poetry install
+      - name: Lint markdown
+        run: poetry run mdwrap --fmt --check README.md
       - name: Lint with flake8
         run: poetry run flake8
       - name: Lint with black

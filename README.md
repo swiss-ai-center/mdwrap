@@ -47,9 +47,8 @@ repos:
       rev: 0.1.0
       hooks:
         - id: mdwrap
-          args: [--print-width, 80, --fmt]
+          args: [--print-width, "80", --fmt]
 ```
-
 
 ## Installation
 

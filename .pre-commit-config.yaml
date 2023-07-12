@@ -28,3 +28,9 @@ repos:
     rev: 5.12.0
     hooks:
       - id: isort
+  - repo: https://github.com/csia-pme/mdwrap
+    rev: 0.1.0
+    hooks:
+      - id: mdwrap
+        args: [--print-width, "80", --fmt]
+        files: README.md
