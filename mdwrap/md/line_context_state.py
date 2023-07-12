@@ -6,5 +6,5 @@ class LineContextState(Enum):
 
     AT_ROOT = auto()
     IN_MULTI_LINE_CODE_BLOCK = auto()
-    IN_FONT_MATTER = auto()
+    IN_FRONT_MATTER = auto()
     IN_TABLE = auto()

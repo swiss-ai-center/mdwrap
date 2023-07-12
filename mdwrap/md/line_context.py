@@ -1,8 +1,10 @@
+import re
 from typing import List, Optional
 
 from mdwrap.common.abstract.abstract_line_context import AbstractLineContext
 from mdwrap.common.line import Line
 from mdwrap.md.line_context_state import LineContextState
+from mdwrap.md.regex import Regex
 
 
 class LineContext(AbstractLineContext):
@@ -36,11 +38,13 @@ class LineContext(AbstractLineContext):
         line_strip = line.value.strip()
         if line_strip.startswith("```"):
             self._update_state(LineContextState.IN_MULTI_LINE_CODE_BLOCK)
-        elif line_strip.startswith("---") and self._state_stack[-1] in [
+        elif re.match(Regex.FRONT_MATTER.value, line_strip) and self._state_stack[
+            -1
+        ] in [
             LineContextState.AT_ROOT,
-            LineContextState.IN_FONT_MATTER,
+            LineContextState.IN_FRONT_MATTER,
         ]:
-            self._update_state(LineContextState.IN_FONT_MATTER)
+            self._update_state(LineContextState.IN_FRONT_MATTER)
         elif line_strip.startswith("|") and line_strip.endswith("|"):
             self._state = LineContextState.IN_TABLE
         else:
