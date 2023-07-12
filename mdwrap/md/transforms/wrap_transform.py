@@ -59,13 +59,13 @@ class WrapTransform(AbstractTransform):
             is_line_too_long = (
                 i + 1 < len(tokens)
                 and len(new_line) + len(tokens[i + 1]) + 1 > self._print_width
+                # We add 1 for the space between        ^^^
             )
             is_next_token_list_start = i + 1 < len(tokens) and re.match(
                 Regex.LIST_START.value, (tokens[i + 1] + " ").lstrip()
             )
             wrap_condition = (
                 not is_start_of_list
-                # We add 1 for the space between
                 and is_line_too_long
                 and not is_next_token_list_start
             )

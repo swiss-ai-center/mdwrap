@@ -15,6 +15,7 @@ class NewlineTransform(AbstractTransform):
             # Current line checks
             context.state == LineContextState.AT_ROOT
             and line.value.strip() == ""
+            # Next line checks
             and next_line
             and next_line.value.strip() == ""
         )
