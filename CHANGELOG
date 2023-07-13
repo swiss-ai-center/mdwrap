@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.2]
+## [0.1.2] - 2023-07-13
 
 ### Added
 
@@ -24,11 +24,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Only format files with `.md` extension
 - Use recursive glob to find files
-
-### Added
-
-- Support for style parameters in images for Material for MkDocs
-- Add text wrapping and formatting with mdwrap pre-commit hook
 
 ## [0.1.1] - 2023-07-12
 
