@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [0.1.2]
+
+### Added
+
+- Improve cli
+  - targets argument can take multiple values
+  - Add cli description
+  - Help shows default values
+  - New option `--ingore` to ignore files by pattern
+  - New option `--ingore-extend` to extend default ignore pattern
+  - New option `--version` to show version
+- Add tests for cli
+
+### Fixed
+
+- Only format files with `.md` extension
+- Use recursive glob to find files
+
+### Added
+
+- Support for style parameters in images for Material for MkDocs
+- Add text wrapping and formatting with mdwrap pre-commit hook
+
 ## [0.1.1] - 2023-07-12
 
 ### Added
