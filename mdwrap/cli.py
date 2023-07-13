@@ -2,6 +2,8 @@ import argparse
 from pathlib import Path
 from typing import List
 
+import pkg_resources
+
 from mdwrap.common.abstract.abstract_transform import AbstractTransform
 from mdwrap.common.formatter import Formatter
 from mdwrap.md.line_context import LineContext
@@ -38,6 +40,12 @@ def cli() -> None:
         "--check",
         action="store_true",
         help="Check if the file(s) is/are formatted",
+    )
+    parser.add_argument(
+        "--version",
+        "-v",
+        action="version",
+        version="%(prog)s " + pkg_resources.get_distribution("mdwrap").version,
     )
     # List of files or folders
     parser.add_argument(
