@@ -1,4 +1,5 @@
 import argparse
+import re
 from pathlib import Path
 from typing import List
 
@@ -13,12 +14,14 @@ from mdwrap.md.transforms.trailing_whitespace_transform import (
 )
 from mdwrap.md.transforms.unwrap_transform import UnwrapTransform
 from mdwrap.md.transforms.wrap_transform import WrapTransform
+from mdwrap.utils.argparse import make_wide
 
 
 def cli() -> None:
     """CLI entrypoint."""
     parser = argparse.ArgumentParser(
         description="A python based markdown line wrapper",
+        formatter_class=make_wide(argparse.ArgumentDefaultsHelpFormatter),
     )
     parser.add_argument(
         "--print-width",
@@ -29,17 +32,28 @@ def cli() -> None:
     parser.add_argument(
         "--fmt",
         action="store_true",
-        help="Format the file(s) (basic newline formatting)",
+        help="Format files",
     )
     parser.add_argument(
         "--unwrap",
         action="store_true",
-        help="Unwrap the file(s)",
+        help="Unwrap files",
     )
     parser.add_argument(
         "--check",
         action="store_true",
-        help="Check if the file(s) is/are formatted",
+        help="Check if files are formatted",
+    )
+    # argparse ignore pattern
+    parser.add_argument(
+        "--ignore",
+        "-i",
+        type=str,
+        default=(
+            r"(\.direnv|\.eggs|\.git|\.hg|\.mypy_cache|\.pytest_cache|\.nox|\.tox|"
+            r"\.venv|venv|\.svn|_build|buck-out|build|dist|__pypackages__)"
+        ),
+        help="Ignore files matching this glob pattern",
     )
     parser.add_argument(
         "--version",
@@ -49,11 +63,12 @@ def cli() -> None:
     )
     # List of files or folders
     parser.add_argument(
-        "targets", nargs="+", help="Files or folders of files to format"
+        "targets", nargs="+", type=str, help="Files or folders of files to format"
     )
 
     args = parser.parse_args()
     targets = [Path(t) for t in args.targets]
+    ignore = args.ignore
     print_width = args.print_width
     fmt = args.fmt
     unwrap = args.unwrap
@@ -66,12 +81,15 @@ def cli() -> None:
     if fmt:
         transforms.extend([NewlineTransform(), TrailingWhitespaceTransform()])
 
-    files = []
+    files: List[Path] = []
+    # add files excluding ignored files
     for target in targets:
-        if target.is_dir():
-            files.extend(target.rglob("**/*.md"))
-        elif target.is_file():
+        if target.is_file():
             files.append(target)
+        elif target.is_dir():
+            files.extend(target.glob("**/*.md"))
+    if ignore:
+        files = [f for f in files if not re.search(ignore, str(f))]
 
     line_context = LineContext()
     formatter = Formatter(
