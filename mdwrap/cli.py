@@ -37,10 +37,13 @@ def cli() -> None:
         action="store_true",
         help="Check if the file(s) is/are formatted",
     )
-    parser.add_argument("target", help="File or folder of files to format")
+    # List of files or folders
+    parser.add_argument(
+        "targets", nargs="+", help="Files or folders of files to format"
+    )
 
     args = parser.parse_args()
-    target = Path(args.target)
+    targets = [Path(t) for t in args.targets]
     print_width = args.print_width
     fmt = args.fmt
     unwrap = args.unwrap
@@ -53,7 +56,13 @@ def cli() -> None:
     if fmt:
         transforms.extend([NewlineTransform(), TrailingWhitespaceTransform()])
 
-    files = [target] if target.is_file() else list(target.glob("**/*.md"))
+    files = []
+    for target in targets:
+        if target.is_dir():
+            files.extend(target.glob("**/*.md"))
+        elif target.is_file():
+            files.append(target)
+
     line_context = LineContext()
     formatter = Formatter(
         line_context=line_context,
@@ -70,7 +79,7 @@ def cli() -> None:
             print(
                 (
                     "ERROR: Checks failed. The files above are not formatted. "
-                    "(run mdwrap to format them)"
+                    "(hint: run 'mdwrap [targets ...]' to format them)"
                 )
             )
             exit(1)
