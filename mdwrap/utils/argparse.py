@@ -1,10 +1,9 @@
 import argparse
+import importlib.metadata
 import re
 import warnings
 from pathlib import Path
 from typing import List
-
-import pkg_resources
 
 from mdwrap.common.abstract.abstract_transform import AbstractTransform
 from mdwrap.md.transforms.newline_transform import NewlineTransform
@@ -69,7 +68,7 @@ class MDWrapArgparse(argparse.ArgumentParser):
             "--version",
             "-v",
             action="version",
-            version="%(prog)s " + pkg_resources.get_distribution("mdwrap").version,
+            version="%(prog)s " + importlib.metadata.version("mdwrap"),
         )
         # List of files or folders
         self.add_argument(
