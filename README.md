@@ -1,17 +1,14 @@
 <div style="text-align: center">
-    <h1>MDWrap</h1> <a href="https://www.python.org">
-        <img
-        src="https://img.shields.io/badge/Python-3.11-3776AB.svg?style=flat&logo=python&logoColor=white"
-        alt="python">
-    </a> <a href="https://github.com/pre-commit/pre-commit">
-        <img
-        src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white"
-        alt="pre-commit">
-    </a> <a href=".github/workflows/lint-and-test.yml">
-        <img
-        src="https://github.com/leonardcser/mdwrap/actions/workflows/lint-and-test.yml/badge.svg"
-        alt="lint-and-test">
-    </a>
+  <h1>MDWrap</h1>
+  <a href="https://www.python.org">
+    <img src="https://img.shields.io/badge/Python-3.11-3776AB.svg?style=flat&logo=python&logoColor=white" alt="python">
+  </a>
+  <a href="https://github.com/pre-commit/pre-commit">
+    <img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white" alt="pre-commit">
+  </a>
+  <a href=".github/workflows/lint-and-test.yml">
+    <img src="https://github.com/leonardcser/mdwrap/actions/workflows/lint-and-test.yml/badge.svg" alt="lint-and-test">
+  </a>
 </div>
 
 <h2>Table of Contents</h2>

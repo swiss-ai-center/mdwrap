@@ -13,10 +13,15 @@ class Tokenizer:
             Regex.IMAGE.value,
             Regex.LINK.value,
             Regex.INLINE_CODE.value,
+            Regex.INLINE_MATH.value,
+            Regex.HIGHLIGH_TEXT.value,
+            Regex.UNDERLINE_TEXT.value,
+            Regex.STRIKETHROUGH_TEXT.value,
             Regex.BOLD_TEXT1.value,
             Regex.BOLD_TEXT2.value,
             Regex.ITALIC_TEXT1.value,
             Regex.ITALIC_TEXT2.value,
+            Regex.KEYBOARD_KEYS_TEXT.value,
             Regex.WORD.value,
         ]
     )
