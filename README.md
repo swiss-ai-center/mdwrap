@@ -74,18 +74,24 @@ poetry add git+https://github.com/csia-pme/mdwrap.git@0.1.1
 ## Usage
 
 ```bash
-mdwrap [options] <file or directory>
+mdwrap [-h] [--print-width PRINT_WIDTH] [--fmt] [--unwrap] [--check]
+       [--ignore IGNORE] [--ignore-extend IGNORE_EXTEND] [--version]
+       targets [targets ...]
 ```
 
 ### Arguments
 
-| Argument        | Description                                   | Default |
-| --------------- | --------------------------------------------- | ------- |
-| `-h`, `--help`  | Show the help message and exit                |         |
-| `--print-width` | Maximum width of a line                       | `80`    |
-| `--fmt`         | Format the file(s) (basic newline formatting) | `false` |
-| `--unwrap`      | Unwrap the file(s)                            | `false` |
-| `--check`       | Check if the file(s) is/are formatted         | `false` |
+| Argument                | Description                                              | Default                |
+| ----------------------- | -------------------------------------------------------- | ---------------------- |
+| `-h`, `--help`          | Show the help message and exit                           |                        |
+| `-v`, `--version`       | Show the version and exit                                |                        |
+| `--print-width`         | Maximum width of a line                                  | `80`                   |
+| `--fmt`                 | Format files                                             | `False`                |
+| `--unwrap`              | Unwrap files                                             | `False`                |
+| `--check`               | Check if files are formatted                             | `False`                |
+| `-i`, `--ignore`        | Ignore files matching this glob pattern                  | check with `mdwrap -h` |
+| `-I`, `--ignore-extend` | Extend the default ignore pattern with this glob pattern | `None`                 |
+| `targets`               | Files or folders of files to format                      |                        |
 
 ## Limitations
 
