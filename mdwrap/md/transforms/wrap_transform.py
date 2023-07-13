@@ -96,6 +96,7 @@ class WrapTransform(AbstractTransform):
             context.state == LineContextState.AT_ROOT
             and line.value.strip() != ""
             and not re.match(Regex.IGNORE_START.value, line.value.lstrip())
+            and not re.match(Regex.HTML_TAG.value, line.value.lstrip())
             and len(line.value) > self._print_width
         )
         if apply_condition:

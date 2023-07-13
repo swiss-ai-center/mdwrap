@@ -7,6 +7,7 @@ class Regex(Enum):
     IGNORE_START = r"^#+ |^=== |^\?\?\? |^> |\[\/\/\]: "
     LIST_START = r"^(-|\*|\+|\d+\.)( +\[[ xX]\])? +"
 
+    HTML_TAG = r"<.*?>"
     FRONT_MATTER = r"^---|^\+\+\+"
 
     IMAGE = r"(?:[^\s]+)?!?\[.*?\]\(.*?\)(?:{.*?})?(?:[^\s]+)?"
