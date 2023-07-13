@@ -164,3 +164,20 @@ def test_parse_args_with_mutiple_targets_and_ignore_extend():
         Path('tests/integration/list/test.md'),
     ]
     assert len(transforms) > 0
+
+
+def test_parse_args_only_md_files():
+    """Test parsing arguments with only md files."""
+    parser = MDWrapArgparse()
+
+    # Prepare test arguments
+    test_args = ["pyproject.toml", "tests/integration/paragraph/test.md"]
+
+    # Parse the arguments
+    _, files, transforms = parser.parse_args(test_args)
+
+    # Assertions
+    assert files == [
+        Path('tests/integration/paragraph/test.md'),
+    ]
+    assert len(transforms) > 0

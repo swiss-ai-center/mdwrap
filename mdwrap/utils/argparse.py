@@ -89,7 +89,7 @@ class MDWrapArgparse(argparse.ArgumentParser):
 
         files: List[Path] = []
         for target in targets:
-            if target.is_file():
+            if target.is_file() and target.suffix == ".md":
                 files.append(target)
             elif target.is_dir():
                 files.extend(target.glob("**/*.md"))
