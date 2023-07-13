@@ -142,8 +142,8 @@ poetry run black --check .
 ### Releasing
 
 1. Make sure to first update the versions in this file.
-2. Update the [CHANGELOG](/CHANGELOG)
-3. Next, to release a new version, run the following:
+2. Update the [CHANGELOG](/CHANGELOG).
+3. Next, release a new version by running the following:
 
 ```bash
 # Bump the version in pyproject.toml
@@ -153,6 +153,10 @@ git tag <version> main
 # Push the tag
 git push origin <version>
 ```
+4. Update the changes in the new
+   [GitHub release](https://github.com/csia-pme/mdwrap/releases/latest).
+5. Finally, update the version in the pre-commit hook in
+   [.pre-commit-config.yaml](/.pre-commit-config.yaml).
 
 ## References
 
