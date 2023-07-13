@@ -15,7 +15,9 @@ from mdwrap.md.transforms.wrap_transform import WrapTransform
 
 def cli() -> None:
     """CLI entrypoint."""
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="A python based markdown line wrapper",
+    )
     parser.add_argument(
         "--print-width",
         type=int,
