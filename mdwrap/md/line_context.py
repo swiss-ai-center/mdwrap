@@ -49,8 +49,16 @@ class LineContext(AbstractLineContext):
             self._update_state(LineContextState.IN_FRONT_MATTER)
         elif line_strip.startswith("|") and line_strip.endswith("|"):
             self._state = LineContextState.IN_TABLE
-        else:
+        elif re.match(Regex.HTML_OPEN_TAG.value, line_strip):
+            self._state = LineContextState.IN_HTML
+        elif self._state != LineContextState.IN_HTML:
             self._state = None
+
+        if self._state == LineContextState.IN_HTML and re.match(
+            Regex.HTML_CLOSE_TAG.value, line_strip
+        ):
+            self._state = None
+
         return line
 
     @property
