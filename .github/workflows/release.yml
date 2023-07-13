@@ -6,6 +6,8 @@ on:
 name: Create Release
 
 jobs:
+  build:
+    uses:  .github/workflows/lint-and-test.yml
   build-and-release:
     permissions: write-all
     name: Create Release
