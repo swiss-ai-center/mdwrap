@@ -3,6 +3,6 @@
   description: "A python based markdown line wrapper"
   entry: mdwrap
   language: python
-  types: [markdown, text]
+  types: [markdown]
   require_serial: true
   minimum_pre_commit_version: 2.9.2
