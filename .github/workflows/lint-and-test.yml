@@ -29,7 +29,7 @@ jobs:
       - name: Install dependencies
         run: poetry install
       - name: Lint markdown
-        run: poetry run mdwrap --fmt --check README.md
+        run: poetry run mdwrap --fmt --check --ignore-extend tests .
       - name: Lint with flake8
         run: poetry run flake8
       - name: Lint with black
