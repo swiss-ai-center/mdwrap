@@ -38,6 +38,8 @@ class LineContext(AbstractLineContext):
         line_strip = line.value.strip()
         if line_strip.startswith("```"):
             self._update_state(LineContextState.IN_MULTI_LINE_CODE_BLOCK)
+        elif line_strip.startswith("$$$"):
+            self._update_state(LineContextState.IN_MULTI_LINE_MATH_BLOCK)
         elif re.match(Regex.FRONT_MATTER.value, line_strip) and self._state_stack[
             -1
         ] in [
