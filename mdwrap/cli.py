@@ -69,7 +69,7 @@ def cli() -> None:
     files = []
     for target in targets:
         if target.is_dir():
-            files.extend(target.glob("**/*.md"))
+            files.extend(target.rglob("**/*.md"))
         elif target.is_file():
             files.append(target)
 
