@@ -9,6 +9,7 @@ class Tokenizer:
 
     TOKENS_REGEX = RegexBuilder.compile(
         [
+            Regex.TABLE_LINE.value,
             Regex.LIST_START.value,
             Regex.IMAGE.value,
             Regex.LINK.value,
