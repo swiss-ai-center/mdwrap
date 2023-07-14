@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mdwrap"
-version = "0.1.2"
+version = "0.2.0"
 description = "A python based markdown line wrapper"
 authors = ["Leonard <leocser632@gmail.com>"]
 license = "MIT"

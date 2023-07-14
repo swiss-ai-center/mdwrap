@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2023-07-14
+
+### Added
+
+- Add support for html within markdown
+- Add support for math inline and multiline blocks
+- Add support for new text styles (Material for MkDocs)
+  - Text highlighting with `==`
+  - Text underline with `^`
+  - Text strikethrough with `~~`
+  - Text keyboard keys with `++`
+
 ### Fixed
 
 - Fix pre-commit hooks config to only run on markdown files
