@@ -4,18 +4,15 @@ from enum import Enum
 class Regex(Enum):
     """Regex for markdown and Material for MkDocs."""
 
-    # Context regex multiline patterns
-    IN_HTML = r"^<[^\/\s>]+(?:.|[\s\S])*^<\/.*?>"
-    IN_MULTI_LINE_CODE_BLOCK = r"^```.*\n(?:[\s\S]*?)^```"
-    IN_MULTI_LINE_MATH_BLOCK = r"^\$\$\$.*\n(?:[\s\S]*?)^\$\$\$"
-    IN_FRONT_MATTER = r"^---$(?:[\s\S]*?)^---"
-
     IGNORE_START = r"^#+ |^=== |^\?\?\? |^> |\[\/\/\]: "
     LIST_START = r"^(-|\*|\+|\d+\.)( +\[[ xX]\])? +"
     TABLE_LINE = r"^\|(?:.*?\|$)+"
+    MULTI_LINE_CODE_BLOCK_START = r"^```.*?"
+    MULTI_LINE_MATH_BLOCK_START = r"^\$\$\$.*?"
+    FRONT_MATTER_START = r"^---$"
 
-    HTML_OPEN_TAG = r"<[^\/\s>]+"
-    HTML_CLOSE_TAG = r"<\/.*?>"
+    HTML_OPEN_TAG = r"^<[^\/\s>]+"
+    HTML_CLOSE_TAG = r"<\/\s?[a-zA-Z]*?>"
 
     FRONT_MATTER = r"^---|^\+\+\+"
 

@@ -22,7 +22,6 @@ class UnwrapTransform(AbstractTransform):
             and not re.match(Regex.IGNORE_START.value, line.value.lstrip())
             # Next line checks
             and next_line
-            and context.state_next == LineContextState.AT_ROOT
             and next_line.value.strip() != ""
             and (
                 # List indent condition
