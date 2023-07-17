@@ -6,9 +6,13 @@ class Regex(Enum):
 
     IGNORE_START = r"^#+ |^=== |^\?\?\? |^> |\[\/\/\]: "
     LIST_START = r"^(-|\*|\+|\d+\.)( +\[[ xX]\])? +"
+    TABLE_LINE = r"^\|(?:.*?\|$)+"
+    MULTI_LINE_CODE_BLOCK_START = r"^```.*?"
+    MULTI_LINE_MATH_BLOCK_START = r"^\$\$\$.*?"
+    FRONT_MATTER_START = r"^---$"
 
-    HTML_OPEN_TAG = r"<[^\/\s>]+"
-    HTML_CLOSE_TAG = r"<\/.*?>"
+    HTML_OPEN_TAG = r"^<[^\/\s>]+"
+    HTML_CLOSE_TAG = r"<\/\s?[a-zA-Z]*?>"
 
     FRONT_MATTER = r"^---|^\+\+\+"
 

@@ -30,7 +30,7 @@ class UnwrapTransform(AbstractTransform):
             )
             and not re.match(Regex.IGNORE_START.value, next_line.value.lstrip())
             and not re.match(Regex.LIST_START.value, next_line.value.lstrip())
-            and not re.match(Regex.HTML_OPEN_TAG.value, next_line.value.lstrip())
+            and not re.match(Regex.TABLE_LINE.value, next_line.value.strip())
         )
         if apply_condition:
             # Merge the lines

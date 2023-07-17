@@ -5,63 +5,70 @@ from mdwrap.common.abstract.abstract_line_context import AbstractLineContext
 from mdwrap.common.line import Line
 from mdwrap.md.line_context_state import LineContextState
 from mdwrap.md.regex import Regex
+from mdwrap.utils.regex_builder import RegexBuilder
 
 
 class LineContext(AbstractLineContext):
     """Class for providing context to a Transform class."""
 
+    SWITCH_STATE_REGEXES = {
+        LineContextState.IN_MULTI_LINE_CODE_BLOCK: Regex.MULTI_LINE_CODE_BLOCK_START,
+        LineContextState.IN_MULTI_LINE_MATH_BLOCK: Regex.MULTI_LINE_MATH_BLOCK_START,
+        LineContextState.IN_FRONT_MATTER: Regex.FRONT_MATTER_START,
+    }
+    HTML_TAG_REGEX = RegexBuilder.compile(
+        [Regex.HTML_OPEN_TAG.value, Regex.HTML_CLOSE_TAG.value]
+    )
+
     def __init__(self) -> None:
         """Initialize the line context and reset the state."""
         super().__init__()
-        self._state: Optional[LineContextState] = None
         self._state_stack: List[LineContextState] = [LineContextState.AT_ROOT]
 
     def set_lines(self, lines: List[str] | List[Line]) -> None:
         """Set the lines of text and reset the state."""
         super().set_lines(lines)
-        self._state = None
         self._state_stack = [LineContextState.AT_ROOT]
 
-    def _update_state(self, new_state: LineContextState) -> None:
-        """Update the state stack."""
-        if self._state_stack[-1] == new_state:
+    def _switch_state(self, target_state: LineContextState) -> None:
+        """Update the state as a switch."""
+        if self._state_stack[-1] == target_state:
             self._state_stack.pop()
         else:
-            self._state_stack.append(new_state)
+            self._state_stack.append(target_state)
 
     def step(self) -> Optional[Line]:
         """Return an iterator over the lines of text while updating the index."""
         step = super().step()
         if step is None:
             return None
-        line = self.current_line
-        line_strip = line.value.strip()
-        if line_strip.startswith("```"):
-            self._update_state(LineContextState.IN_MULTI_LINE_CODE_BLOCK)
-        elif line_strip.startswith("$$$"):
-            self._update_state(LineContextState.IN_MULTI_LINE_MATH_BLOCK)
-        elif re.match(Regex.FRONT_MATTER.value, line_strip) and self._state_stack[
-            -1
-        ] in [
+
+        line_strip = self.current_line.value.strip()
+        # Update the state
+        if self.state in [
             LineContextState.AT_ROOT,
-            LineContextState.IN_FRONT_MATTER,
+            LineContextState.IN_HTML,
         ]:
-            self._update_state(LineContextState.IN_FRONT_MATTER)
-        elif line_strip.startswith("|") and line_strip.endswith("|"):
-            self._state = LineContextState.IN_TABLE
-        elif re.match(Regex.HTML_OPEN_TAG.value, line_strip):
-            self._state = LineContextState.IN_HTML
-        elif self._state != LineContextState.IN_HTML:
-            self._state = None
+            if matches := list(re.finditer(self.HTML_TAG_REGEX, line_strip)):
+                for match in matches:
+                    if re.match(Regex.HTML_OPEN_TAG.value, match.group()):
+                        self._state_stack.append(LineContextState.IN_HTML)
+                    elif (
+                        re.match(Regex.HTML_CLOSE_TAG.value, match.group())
+                        and self._state_stack[-1] == LineContextState.IN_HTML
+                    ):
+                        self._state_stack.pop()
 
-        if self._state == LineContextState.IN_HTML and re.match(
-            Regex.HTML_CLOSE_TAG.value, line_strip
-        ):
-            self._state = None
-
-        return line
+        for state, regex in self.SWITCH_STATE_REGEXES.items():
+            if re.match(regex.value, line_strip) and self._state_stack[-1] in [
+                LineContextState.AT_ROOT,
+                state,
+            ]:
+                self._switch_state(state)
+                break
+        return self.current_line
 
     @property
     def state(self) -> LineContextState:
         """Return the current state of the line context."""
-        return self._state or self._state_stack[-1]
+        return self._state_stack[-1]
