@@ -48,7 +48,7 @@ files. To do so, add the following to your `.pre-commit-config.yaml`:
 ```yaml
 repos:
   - repo: https://github.com/csia-pme/mdwrap
-      rev: 0.2.1
+      rev: 0.2.2
       hooks:
         - id: mdwrap
           args: [--print-width, "80", --fmt]
@@ -59,13 +59,13 @@ repos:
 ### With pip
 
 ```bash
-pip install git+https://github.com/csia-pme/mdwrap.git@0.2.1
+pip install git+https://github.com/csia-pme/mdwrap.git@0.2.2
 ```
 
 ### With Poetry
 
 ```bash
-poetry add git+https://github.com/csia-pme/mdwrap.git@0.2.1
+poetry add git+https://github.com/csia-pme/mdwrap.git@0.2.2
 ```
 
 ## Usage
@@ -74,6 +74,18 @@ poetry add git+https://github.com/csia-pme/mdwrap.git@0.2.1
 mdwrap [-h] [--print-width PRINT_WIDTH] [--fmt] [--unwrap] [--check]
        [--ignore IGNORE] [--ignore-extend IGNORE_EXTEND] [--version]
        targets [targets ...]
+```
+
+
+```bash
+# To format (wrap) a file:
+mdwrap file.md
+# To format (wrap + remove trailing newline + whitespace) a file:
+mdwrap --fmt file.md
+# To check (wrap) a file:
+mdwrap --check file.md
+# To check (wrap + remove trailing newline + whitespace) a file:
+mdwrap --fmt --check file.md
 ```
 
 ### Arguments
