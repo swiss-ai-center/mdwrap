@@ -13,6 +13,7 @@ class Regex(Enum):
 
     HTML_OPEN_TAG = r"^<[^\/\s>]+"
     HTML_CLOSE_TAG = r"<\/\s?[a-zA-Z]*?>"
+    HTML_COMMENT = r"<!--.*?-->"
 
     FRONT_MATTER = r"^---|^\+\+\+"
 

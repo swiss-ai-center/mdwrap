@@ -1,5 +1,5 @@
 import re
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from mdwrap.common.abstract.abstract_line_context import AbstractLineContext
 from mdwrap.common.line import Line
@@ -25,7 +25,7 @@ class LineContext(AbstractLineContext):
         super().__init__()
         self._state_stack: List[LineContextState] = [LineContextState.AT_ROOT]
 
-    def set_lines(self, lines: List[str] | List[Line]) -> None:
+    def set_lines(self, lines: Union[List[str], List[Line]]) -> None:
         """Set the lines of text and reset the state."""
         super().set_lines(lines)
         self._state_stack = [LineContextState.AT_ROOT]
@@ -44,6 +44,9 @@ class LineContext(AbstractLineContext):
             return None
 
         line_strip = self.current_line.value.strip()
+        # Exit early for comments
+        if re.match(Regex.HTML_COMMENT.value, line_strip) is not None:
+            return self.current_line
         # Update the state
         if self.state in [
             LineContextState.AT_ROOT,
