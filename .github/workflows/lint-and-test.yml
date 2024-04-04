@@ -24,10 +24,12 @@ jobs:
         run: pipx install poetry
       - uses: actions/setup-python@v3
         with:
-          python-version: ${{ matrix.python-version }}
-          cache: 'poetry'
-      - name: Install dependencies
-        run: poetry install
+          python-version: ${{ matrix.PYTHON_VERSION }}
+          cache: 'pip'
+      - name: Install Python dependencies
+        run: |
+          python -m pip install -U pip
+          python -m pip install .
       - name: Lint markdown
         run: poetry run mdwrap --fmt --check --ignore-extend tests .
       - name: Lint with flake8
