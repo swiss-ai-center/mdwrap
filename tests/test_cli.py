@@ -34,8 +34,8 @@ def test_parse_args():
     assert args.ignore_extend == ".git"
 
     assert set(files) == {
-        Path('tests/integration/paragraph/expected.md'),
-        Path('tests/integration/paragraph/test.md'),
+        Path("tests/integration/paragraph/expected.md"),
+        Path("tests/integration/paragraph/test.md"),
     }
     assert len(transforms) > 0
 
@@ -112,10 +112,10 @@ def test_parse_args_with_mutiple_targets():
 
     # Assertions
     assert set(files) == {
-        Path('tests/integration/paragraph/expected.md'),
-        Path('tests/integration/paragraph/test.md'),
-        Path('tests/integration/list/expected.md'),
-        Path('tests/integration/list/test.md'),
+        Path("tests/integration/paragraph/expected.md"),
+        Path("tests/integration/paragraph/test.md"),
+        Path("tests/integration/list/expected.md"),
+        Path("tests/integration/list/test.md"),
     }
     assert len(transforms) > 0
 
@@ -137,8 +137,8 @@ def test_parse_args_with_mutiple_targets_and_ignore():
 
     # Assertions
     assert set(files) == {
-        Path('tests/integration/list/expected.md'),
-        Path('tests/integration/list/test.md'),
+        Path("tests/integration/list/expected.md"),
+        Path("tests/integration/list/test.md"),
     }
     assert len(transforms) > 0
 
@@ -160,8 +160,8 @@ def test_parse_args_with_mutiple_targets_and_ignore_extend():
 
     # Assertions
     assert set(files) == {
-        Path('tests/integration/list/expected.md'),
-        Path('tests/integration/list/test.md'),
+        Path("tests/integration/list/expected.md"),
+        Path("tests/integration/list/test.md"),
     }
     assert len(transforms) > 0
 
@@ -178,6 +178,6 @@ def test_parse_args_only_md_files():
 
     # Assertions
     assert set(files) == {
-        Path('tests/integration/paragraph/test.md'),
+        Path("tests/integration/paragraph/test.md"),
     }
     assert len(transforms) > 0
