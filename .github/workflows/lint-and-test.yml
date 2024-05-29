@@ -32,7 +32,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install -U pip
-          python -m pip install -r requirements.lock
+          python -m pip install -r requirements-freeze.txt
       - name: Lint markdown
         run: python -m mdwrap --fmt --check --ignore-extend tests .
       - name: Lint with flake8
