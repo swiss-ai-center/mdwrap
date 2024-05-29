@@ -7,3 +7,6 @@ tests/integration/**/output.*
 
 # OS Specific
 .DS_Store
+
+# Environments
+.venv

@@ -107,7 +107,7 @@ class MDWrapArgparse(argparse.ArgumentParser):
         try:
             # https://stackoverflow.com/a/5464440
             # beware: "Only the name of this class is considered a public API."
-            kwargs = {'width': w, 'max_help_position': h}
+            kwargs = {"width": w, "max_help_position": h}
             formatter(None, **kwargs)
             return lambda prog: formatter(prog, **kwargs)
         except TypeError:

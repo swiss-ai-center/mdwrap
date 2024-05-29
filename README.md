@@ -16,8 +16,6 @@
 - [Overview](#overview)
 - [Pre-commit Hook](#pre-commit-hook)
 - [Installation](#installation)
-  - [With pip](#with-pip)
-  - [With Poetry](#with-poetry)
 - [Usage](#usage)
   - [Arguments](#arguments)
 - [Limitations](#limitations)
@@ -56,16 +54,9 @@ repos:
 
 ## Installation
 
-### With pip
 
 ```bash
 pip install git+https://github.com/csia-pme/mdwrap.git@0.2.2
-```
-
-### With Poetry
-
-```bash
-poetry add git+https://github.com/csia-pme/mdwrap.git@0.2.2
 ```
 
 ## Usage
@@ -119,16 +110,23 @@ blocks.
 
 ### Development
 
-Firstly, install the pre-commit hooks:
+Create and enable a virtual environment:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+Install the development dependencies:
+
+```bash
+pip install .
+```
+
+Install the pre-commit hooks:
 
 ```bash
 pre-commit install
-```
-
-Then, install the development dependencies:
-
-```bash
-poetry install
 ```
 
 ### Testing
@@ -136,7 +134,7 @@ poetry install
 To run the tests:
 
 ```bash
-poetry run pytest
+pytest
 ```
 
 ### Linting
@@ -144,8 +142,7 @@ poetry run pytest
 To lint the code:
 
 ```bash
-poetry run flake8
-poetry run black --check .
+pre-commit run -a
 ```
 
 ### Releasing
@@ -156,7 +153,7 @@ poetry run black --check .
 
 ```bash
 # Bump the version in pyproject.toml
-poetry version <version>
+sed -i 's/version = ".*"/version = "0.x.y"/' pyproject.toml
 # Create a new tag
 git tag <version> main
 # Push the tag
@@ -172,7 +169,6 @@ git push origin <version>
 This project is built with the following tools:
 
 - [`pre-commit`](https://pre-commit.com/)
-- [`poetry`](https://python-poetry.org/)
 - [`pytest`](https://docs.pytest.org/)
 - [`flake8`](https://flake8.pycqa.org/en/latest/)
 - [`black`](https://black.readthedocs.io/en/stable/)
