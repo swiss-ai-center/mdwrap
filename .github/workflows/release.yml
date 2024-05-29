@@ -5,6 +5,9 @@ on:
     tags:
       - '*.*.*'
 
+env:
+  PYTHON_VERSION: '3.11'
+
 jobs:
   lint-and-test:
     name: Call Lint and Test
@@ -16,20 +19,19 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-      - name: Install poetry
-        run: pipx install poetry
-      - uses: actions/setup-python@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-          cache: 'poetry'
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
       - name: Build the package
-        run: poetry build
+        run: python -m build
       - name: Check Version
         id: check-version
         run: |
-          [[ "$(poetry version --short)" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || echo prerelease=true >> $GITHUB_OUTPUT
+          [[ "$(grep 'version =' pyproject.toml | sed 's/version = "\(.*\)"/\1/')" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || echo prerelease=true >> $GITHUB_OUTPUT
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
