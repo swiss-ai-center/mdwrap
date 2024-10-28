@@ -1,8 +1,5 @@
 <div style="text-align: center">
   <h1>MDWrap</h1>
-  <a href="https://www.python.org">
-    <img src="https://img.shields.io/badge/Python-3.11-3776AB.svg?style=flat&logo=python&logoColor=white" alt="python">
-  </a>
   <a href="https://github.com/pre-commit/pre-commit">
     <img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white" alt="pre-commit">
   </a>
@@ -45,8 +42,8 @@ files. To do so, add the following to your `.pre-commit-config.yaml`:
 
 ```yaml
 repos:
-  - repo: https://github.com/csia-pme/mdwrap
-      rev: 0.2.2
+  - repo: https://github.com/swiss-ai-center/mdwrap
+      rev: 0.2.3
       hooks:
         - id: mdwrap
           args: [--print-width, "80", --fmt]
@@ -56,7 +53,7 @@ repos:
 
 
 ```bash
-pip install git+https://github.com/csia-pme/mdwrap.git@0.2.2
+pip install git+https://github.com/swiss-ai-center/mdwrap.git@0.2.3
 ```
 
 ## Usage
