@@ -43,7 +43,7 @@ files. To do so, add the following to your `.pre-commit-config.yaml`:
 ```yaml
 repos:
   - repo: https://github.com/swiss-ai-center/mdwrap
-      rev: 0.2.3
+      rev: 0.2.4
       hooks:
         - id: mdwrap
           args: [--print-width, "80", --fmt]
@@ -53,7 +53,7 @@ repos:
 
 
 ```bash
-pip install git+https://github.com/swiss-ai-center/mdwrap.git@0.2.3
+pip install git+https://github.com/swiss-ai-center/mdwrap.git@0.2.4
 ```
 
 ## Usage
