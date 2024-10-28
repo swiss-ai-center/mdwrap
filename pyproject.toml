@@ -22,6 +22,9 @@ readme = "README.md"
 license = { text = "MIT License" }
 requires-python = ">= 3.10"
 
+[project.scripts]
+mdwrap = "mdwrap.cli:cli"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
