@@ -37,9 +37,6 @@ skip-string-normalization = true
 profile = "black"
 multi_line_output = 3
 
-[tool.rye]
-managed = true
-
 [tool.hatch.metadata]
 allow-direct-references = true
 
