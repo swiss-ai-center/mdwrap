@@ -5,7 +5,13 @@ description = "A python based markdown line wrapper"
 authors = [
     { name = "Leonard", email = "leocser632@gmail.com" }
 ]
-dependencies = [
+readme = "README.md"
+license = { text = "MIT License" }
+requires-python = ">= 3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
     "pre-commit>=3.7.1",
     "black>=24.4.2",
     "flake8>=7.0.0",
@@ -16,11 +22,8 @@ dependencies = [
     "flake8-implicit-str-concat>=0.4.0",
     "isort>=5.13.2",
     "pytest>=8.2.1",
-    "build>=1.2.1",
+    "build>=1.2.1"
 ]
-readme = "README.md"
-license = { text = "MIT License" }
-requires-python = ">= 3.10"
 
 [project.scripts]
 mdwrap = "mdwrap.cli:cli"

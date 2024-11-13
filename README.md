@@ -51,7 +51,6 @@ repos:
 
 ## Installation
 
-
 ```bash
 pip install git+https://github.com/swiss-ai-center/mdwrap.git@0.2.4
 ```
@@ -63,7 +62,6 @@ mdwrap [-h] [--print-width PRINT_WIDTH] [--fmt] [--unwrap] [--check]
        [--ignore IGNORE] [--ignore-extend IGNORE_EXTEND] [--version]
        targets [targets ...]
 ```
-
 
 ```bash
 # To format (wrap) a file:
@@ -117,7 +115,7 @@ source .venv/bin/activate
 Install the development dependencies:
 
 ```bash
-pip install .
+pip install -e '.[dev]'
 ```
 
 Install the pre-commit hooks:
@@ -156,6 +154,7 @@ git tag <version> main
 # Push the tag
 git push origin <version>
 ```
+
 4. Update the changes in the new
    [GitHub release](https://github.com/csia-pme/mdwrap/releases/latest).
 5. Finally, update the version in the pre-commit hook in
